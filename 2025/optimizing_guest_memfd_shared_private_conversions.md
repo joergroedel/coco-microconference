@@ -51,15 +51,24 @@ The subsequent discussion with the community brought forward several critical
 points:
 
 - **Architectural Differences in Memory Protection:** Participants noted that
-  different hardware architectures handle unauthorized memory access differently.
-  For instance, Intel TDX can trigger a machine check exception—potentially
-  crashing the host—if a device attempts to write to private memory, while AMD
-  SEV-SNP may simply block the operation.
+  different hardware architectures handle unauthorized memory access
+  differently
+    - Unauthorized memory access on Intel TDX results in a machine check
+      exception—potentially crashing the host—if a device attempts to write to
+      private memory
+    - RMP checks on AMD SEV-SNP would prevent host writes to private memory
+    - GPT checks on ARM CCA prevent host writes to private memory
 - **The Necessity of Unmapping:** There was debate over whether the host must
-  always unmap memory from the IOMMU during conversions. While some argued that
-  confidential hypervisors already provide isolation, the consensus favored
-  unmapping as a vital "defense-in-depth" measure to protect the host from
-  crashing due to malformed device requests.
+  always unmap memory from the IOMMU during conversions. Discussion unveiled
+  that there are two aspects to usage of memory in the IOMMU with regard to
+  confidential computing:
+    1. Related to the above point on differences in memory protection, IOMMU
+       writes may not be a problem on all architectures, hence, there may not be
+       a need to trade in performance by unmapping if it is not causing issues.
+    2. IOMMU page tables may reuse CPU stage-2 page tables (i.e. ARM CCA). If
+       unmapping on stage-2 page tables is already performed and the page tables
+       are shared, then there is no need to separately unmap in IOMMU page
+       tables.
 - **The Role of GUP in Virtualization:** Discussion revolved around how much
   virtualization logic still relies on GUP and whether it's feasible to
   completely move away from it for `guest_memfd`. Some participants suggested
