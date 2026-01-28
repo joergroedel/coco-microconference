@@ -74,9 +74,11 @@ points:
   userspace to specifically perform IOMMU unmapping was requested.
 - **The Role of GUP in Virtualization:** Discussion revolved around how much
   virtualization logic still relies on GUP and whether it's feasible to
-  completely move away from it for `guest_memfd`. Some participants suggested
-  that for shared pages, GUP might still be necessary unless specialized "bounce
-  buffer" mechanisms are used.
+  completely move away from it for `guest_memfd`.
+    - Some participants suggested that for bounce buffers, GUP might not be that
+      useful. The solution could just be to use shared, non-guest_memfd memory
+      that supports GUP as bounce buffers, bouncing into guest_memfd used for
+      private memory.
 
 ## Conclusion
 
