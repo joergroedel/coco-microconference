@@ -69,14 +69,14 @@ points:
        unmapping on stage-2 page tables is already performed and the page tables
        are shared, then there is no need to separately unmap in IOMMU page
        tables.
+- **Userspace API and Orchestration:** Questions were raised about the best way
+  for userspace (uAPI) to unmap guset_memfd from the IOMMU. An interface for
+  userspace to specifically perform IOMMU unmapping was requested.
 - **The Role of GUP in Virtualization:** Discussion revolved around how much
   virtualization logic still relies on GUP and whether it's feasible to
   completely move away from it for `guest_memfd`. Some participants suggested
   that for shared pages, GUP might still be necessary unless specialized "bounce
   buffer" mechanisms are used.
-- **Userspace API and Orchestration:** Questions were raised about the best way
-  for userspace (uAPI) to unmap guset_memfd from the IOMMU. An interface for
-  userspace to specifically perform IOMMU unmapping was requested.
 
 ## Conclusion
 
