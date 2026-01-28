@@ -74,9 +74,9 @@ points:
   completely move away from it for `guest_memfd`. Some participants suggested
   that for shared pages, GUP might still be necessary unless specialized "bounce
   buffer" mechanisms are used.
-- **User-space API and Orchestration:** Questions were raised about the best
-  way for user-space tools to interact with these new mapping mechanisms,
-  particularly as more I/O tasks are offloaded to specialized hardware.
+- **Userspace API and Orchestration:** Questions were raised about the best way
+  for userspace (uAPI) to unmap guset_memfd from the IOMMU. An interface for
+  userspace to specifically perform IOMMU unmapping was requested.
 
 ## Conclusion
 
