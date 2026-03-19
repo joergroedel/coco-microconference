@@ -1,3 +1,5 @@
+# [Summary Blog](blog-summary.md)
+
 # Notes from the [CoCo Microconference](https://lpc.events/event/19/sessions/224/#20251212) @ [LPC 2025 in Tokyo](https://lpc.events/event/19/)
 
 - [Optimizing `guest_memfd` shared/private conversions](optimizing_guest_memfd_shared_private_conversions.md)
